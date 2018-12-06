@@ -57,9 +57,9 @@ namespace Comparison_tool
                     for (int i = 0; i < number; i++)
                     {
                         //dr = dt.Rows[i];
-                        string SN = dt.Rows[i][0].ToString();
-                        string CATTONNO = dt.Rows[i][1].ToString();
-                        string DATE = dt.Rows[i][2].ToString();
+                        string SN = dt.Rows[i][6].ToString();
+                        string CATTONNO = dt.Rows[i][12].ToString();
+                        string DATE = dt.Rows[i][14].ToString();
 
                         bool result = ORACLEDLL.Comparison(SN,CATTONNO,DATE);
                         if (result)
@@ -68,15 +68,15 @@ namespace Comparison_tool
                             if (!res)
                             {
                                 //MessageBox.Show("录入失败！");
-                                textBox2.Text += "SN：" + dt.Rows[i][0].ToString() + "    " + "箱号：" + dt.Rows[i][1].ToString() + "    " + " 录入失败\r\n";
+                                textBox2.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 录入失败\r\n";
                                 Application.DoEvents();
                             }
-                            textBox1.Text += "SN：" + dt.Rows[i][0].ToString() + "    " + "箱号：" + dt.Rows[i][1].ToString() + "    " + " 录入成功\r\n"; 
+                            textBox1.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 录入成功\r\n"; 
                             Application.DoEvents(); 
                         }
                         else
                         {
-                            textBox2.Text += "SN：" + dt.Rows[i][0].ToString() + "    " + "箱号：" + dt.Rows[i][1].ToString() + "    " + " 重复录入\r\n";
+                            textBox2.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 重复录入\r\n";
                             Application.DoEvents();
 
                             
