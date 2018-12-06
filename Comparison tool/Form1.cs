@@ -54,13 +54,15 @@ namespace Comparison_tool
                 if (number > 0)
                 {
                     //DataRow dr = null;
-                    for (int i = 0; i < number; i++)
+                    for (int i = 1; i < number; i++)
                     {
                         //dr = dt.Rows[i];
                         string SN = dt.Rows[i][6].ToString();
                         string CATTONNO = dt.Rows[i][12].ToString();
                         string DATE = dt.Rows[i][14].ToString();
 
+                        if (SN == "")
+                            continue;
                         bool result = ORACLEDLL.Comparison(SN,CATTONNO,DATE);
                         if (result)
                         {
@@ -78,7 +80,6 @@ namespace Comparison_tool
                         {
                             textBox2.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 重复录入\r\n";
                             Application.DoEvents();
-
                             
                         }
 
