@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -67,7 +68,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(40, 52);
+            this.label1.Location = new System.Drawing.Point(40, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 29);
             this.label1.TabIndex = 4;
@@ -76,7 +77,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(580, 52);
+            this.label2.Location = new System.Drawing.Point(580, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 29);
             this.label2.TabIndex = 5;
@@ -92,8 +93,9 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Comparison Tool";
             this.ResumeLayout(false);
             this.PerformLayout();
 

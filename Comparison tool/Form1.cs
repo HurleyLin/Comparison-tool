@@ -68,22 +68,17 @@ namespace Comparison_tool
                             if (!res)
                             {
                                 //MessageBox.Show("录入失败！");
-                                textBox2.Text += "SN：" + dt.Rows[i][0].ToString() + "\t" + "箱号：" + dt.Rows[i][1].ToString() + " 录入失败\r\n";
+                                textBox2.Text += "SN：" + dt.Rows[i][0].ToString() + "    " + "箱号：" + dt.Rows[i][1].ToString() + "    " + " 录入失败\r\n";
                                 Application.DoEvents();
                             }
-                            textBox1.Text += "SN：" + dt.Rows[i][0].ToString() + "\t" + "箱号：" + dt.Rows[i][1].ToString() + " 录入成功\r\n";
-                            if (i % 10 == 0)
-                            {   
-                                Application.DoEvents();
-                            } 
+                            textBox1.Text += "SN：" + dt.Rows[i][0].ToString() + "    " + "箱号：" + dt.Rows[i][1].ToString() + "    " + " 录入成功\r\n"; 
+                            Application.DoEvents(); 
                         }
                         else
                         {
-                            textBox2.Text += "SN：" + dt.Rows[i][0].ToString() + "\t" + "箱号：" + dt.Rows[i][1].ToString() + " 重复录入\r\n";
-                            if (i % 10 == 0)
-                            {
-                                Application.DoEvents();
-                            }
+                            textBox2.Text += "SN：" + dt.Rows[i][0].ToString() + "    " + "箱号：" + dt.Rows[i][1].ToString() + "    " + " 重复录入\r\n";
+                            Application.DoEvents();
+
                             
                         }
 
