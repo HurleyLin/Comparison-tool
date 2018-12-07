@@ -54,6 +54,7 @@ namespace Comparison_tool
                 if (number > 0)
                 {
                     //DataRow dr = null;
+                    bool Comparison = false;
                     for (int i = 1; i < number; i++)
                     {
                         //dr = dt.Rows[i];
@@ -66,6 +67,7 @@ namespace Comparison_tool
                         bool result = ORACLEDLL.Comparison(SN,CATTONNO,DATE);
                         if (result)
                         {
+                            /*
                             bool res = ORACLEDLL.InsterApicalComparison(SN, CATTONNO, DATE);
                             if (!res)
                             {
@@ -75,16 +77,55 @@ namespace Comparison_tool
                             }
                             textBox1.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 录入成功\r\n"; 
                             Application.DoEvents(); 
+                             * */
+
+                            //continue;
+                            
                         }
                         else
                         {
-                            textBox2.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 重复录入\r\n";
-                            Application.DoEvents();
+                            Comparison = true;
+                            textBox1.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 重复\r\n";
+                            //Application.DoEvents();
                             
                         }
 
+                        label4.ForeColor = Color.Red;
+                        label4.Text = "正在检测数据，请稍后......";
+                        Application.DoEvents();
                         //System.Threading.Thread.Sleep(100);
                     }
+
+                    if (Comparison)
+                    {
+                        MessageBox.Show("有重复数据，请检查！");
+                    }
+                    else
+                    {
+                        label4.ForeColor = Color.Red;
+                        label4.Text = "正在录入数据......";
+                        for (int i = 1; i < number; i++)
+                        {
+                            string SN = dt.Rows[i][6].ToString();
+                            string CATTONNO = dt.Rows[i][12].ToString();
+                            string DATE = dt.Rows[i][14].ToString();
+
+                            if (SN == "")
+                                continue;
+
+                            bool res = ORACLEDLL.InsterApicalComparison(SN, CATTONNO, DATE);
+                            if (!res)
+                            {
+
+                                textBox1.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 录入失败\r\n";
+                                Application.DoEvents();
+                            }
+                            textBox1.Text += "SN：" + dt.Rows[i][6].ToString() + "    " + "箱号：" + dt.Rows[i][12].ToString() + "    " + " 录入成功\r\n";
+                            Application.DoEvents();
+                        }
+                    }
+
+
                     string exepath = System.IO.Directory.GetCurrentDirectory();
                     string filepath = exepath + "\\repeat.txt";
 
@@ -94,19 +135,21 @@ namespace Comparison_tool
                     DateTime.Now.ToString();        //获取当前系统时间 完整的日期和时间
                     sw.WriteLine(DateTime.Now.ToString());
                     sw.WriteLine(textBox1.Text);
-                    sw.WriteLine(textBox2.Text);
+                    //sw.WriteLine(textBox2.Text);
                     sw.Flush();//文件流
                     sw.Close();//最后要关闭写入状态
-
-                    MessageBox.Show("导入成功！");
+                    if (!Comparison)
+                        MessageBox.Show("导入成功！");
                 }
                 else
                 {
                     MessageBox.Show("没有数据！");
                 }
-
+                label4.ForeColor = Color.Green;
+                label4.Text = "操作完成！";
             }
         }
+
 
     }
 }
